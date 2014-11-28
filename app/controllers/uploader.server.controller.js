@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Upload Image
+ * Upload Image tp public/image folder
  */
 exports.uploadImage = function(req, res) {
 	var formidable = require('formidable');
