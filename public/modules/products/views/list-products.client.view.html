@@ -1,0 +1,58 @@
+<section data-ng-controller="ListProductController" data-ng-init="find()" xmlns="http://www.w3.org/1999/html">
+    <div class="page-header">
+        <h1>Products</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-offset-2 col-xs-6 col-md-offset-2 col-md-6">
+            <div class="input-group">
+                <input ng-model="searchText" type="text" class="form-control" ng-change="searchTextFunction()" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+            </br>
+            <div>
+                <input type="radio" name="sku" id="name_serch" ng-model="searchType" value="name" checked />
+                <label for="name_serch">name</label>
+                <input type="radio" name="sku" id="sku_serch" ng-model="searchType" value="_id" />
+                <label for="sku_serch">sku number</label>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <div class="list-group">
+        <div class="col-xs-offset-2 col-xs-6 col-md-offset-2 col-md-6">
+            <div class="row">
+                <a data-ng-repeat="product in filteredProducts" data-ng-href="#!/products/{{product._id}}" class="list-group-item">
+                    <h4 class="list-group-item-heading" data-ng-bind="product.name"></h4>
+                    <small class="list-group-item-text">
+                        <div class="">
+                            <img ng-src={{product.image}} width="50" height="50" />
+                        </div>
+                        <div class="">
+                            <div>
+                                Category :
+                                <ul>
+                                    <li ng-repeat="category in product.category">
+                                        {{category}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>Description : {{product.description}}</div>
+                            <div>Price : ${{product.price}}</div>
+                            <div>Quantity : {{product.quantity}}</div>
+                            Created on
+                            <span data-ng-bind="product.created | date:'medium'"></span>
+                            by
+                            <span data-ng-bind="product.user.displayName"></span>
+                        </div>
+                    </small>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!products.$resolved || products.length">
+    	No Products yet, why don't you <a href="/#!/products/create">create one</a>?
+    </div>
+</section>
