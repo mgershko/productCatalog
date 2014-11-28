@@ -62,7 +62,7 @@ angular.module('products').controller('CreateProductController', ['$scope', '$st
 				});
 		};
 
-		// Init function set categories
+		// Init function and set categories
 		var init = function () {
 			if($scope.product){
 				$scope.selectedCategories = $scope.product.category;
