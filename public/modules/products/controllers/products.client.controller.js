@@ -4,8 +4,6 @@
 angular.module('products').controller('CreateProductController', ['$scope', '$stateParams', '$location', 'Authentication', 'Products', 'Categories', '$http',
 	function($scope, $stateParams, $location, Authentication, Products, Categories, $http) {
 		$scope.authentication = Authentication;
-		$scope.searchText = '';
-		$scope.searchType = 'name';
 		$scope.selectedCategories= [];
 
 		// Create new Product
@@ -38,6 +36,7 @@ angular.module('products').controller('CreateProductController', ['$scope', '$st
 			});
 		};
 
+		// Change category
 		$scope.changeCategory = function(category){
 			if($scope.selectedCategories.indexOf(category.name) !== -1){
 				$scope.selectedCategories.splice($scope.selectedCategories.indexOf(category.name), 1);
@@ -47,6 +46,7 @@ angular.module('products').controller('CreateProductController', ['$scope', '$st
 
 		};
 
+		// Upload Image
 		$scope.uploadImage = function(files){
 			var fd = new FormData();
 			fd.append('file', files[0]);
@@ -62,6 +62,7 @@ angular.module('products').controller('CreateProductController', ['$scope', '$st
 				});
 		};
 
+		// Init function set categories
 		var init = function () {
 			if($scope.product){
 				$scope.selectedCategories = $scope.product.category;
@@ -79,8 +80,6 @@ angular.module('products').controller('CreateProductController', ['$scope', '$st
 angular.module('products').controller('EditProductController', ['$scope', '$stateParams', '$location', 'Authentication', 'Products', 'Categories', '$http',
 	function($scope, $stateParams, $location, Authentication, Products, Categories, $http) {
 		$scope.authentication = Authentication;
-		$scope.searchText = '';
-		$scope.searchType = 'name';
 		$scope.selectedCategories= [];
 
 		// Create new Product
@@ -126,6 +125,7 @@ angular.module('products').controller('EditProductController', ['$scope', '$stat
 			});
 		};
 
+		// Change category
 		$scope.changeCategory = function(category){
 			if($scope.selectedCategories.indexOf(category.name) !== -1){
 				$scope.selectedCategories.splice($scope.selectedCategories.indexOf(category.name), 1);
@@ -135,6 +135,7 @@ angular.module('products').controller('EditProductController', ['$scope', '$stat
 
 		};
 
+		// Upload image
 		$scope.uploadImage = function(files){
 			var fd = new FormData();
 			fd.append('file', files[0]);
@@ -150,8 +151,8 @@ angular.module('products').controller('EditProductController', ['$scope', '$stat
 				});
 		};
 
+		// Init function set categories
 		var init = function () {
-
 			$scope.categories = Categories.query();
 			Products.get({productId: $stateParams.productId}).$promise.then(function (product) {
 				$scope.product = product;
@@ -168,9 +169,6 @@ angular.module('products').controller('EditProductController', ['$scope', '$stat
 angular.module('products').controller('ViewProductController', ['$scope', '$stateParams', '$location', 'Authentication', 'Products', 'Categories',
 	function($scope, $stateParams, $location, Authentication, Products, Categories) {
 		$scope.authentication = Authentication;
-		$scope.searchText = '';
-		$scope.searchType = 'name';
-		$scope.selectedCategories= [];
 
 		// Remove existing Product
 		$scope.remove = function(product) {
@@ -209,7 +207,6 @@ angular.module('products').controller('ListProductController', ['$scope', '$stat
 		$scope.authentication = Authentication;
 		$scope.searchText = '';
 		$scope.searchType = 'name';
-		$scope.selectedCategories= [];
 
 		// Create new Product
 		$scope.create = function() {
@@ -270,6 +267,7 @@ angular.module('products').controller('ListProductController', ['$scope', '$stat
 			});
 		};
 
+		// Search Name or Id
 		$scope.searchTextFunction = function(){
 			$scope.filteredProducts = [];
 			angular.forEach($scope.products, function(elem, i){
@@ -280,6 +278,7 @@ angular.module('products').controller('ListProductController', ['$scope', '$stat
 			});
 		};
 
+		// Init function set categories
 		var init = function () {
 			if($scope.product){
 				$scope.selectedCategories = $scope.product.category;
