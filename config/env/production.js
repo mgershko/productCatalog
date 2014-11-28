@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/productcatalog',
+	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://mgershko:11091973@dogen.mongohq.com:10042/productCatalog',
 	assets: {
 		lib: {
 			css: [
